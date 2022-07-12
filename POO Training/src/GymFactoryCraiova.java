@@ -20,25 +20,19 @@ public class GymFactoryCraiova implements GymActivity {
 
     @Override
     public void givePrizes() {
-        int number = maxNumber();
+
+        int number = 0;
+        int indexPreviousWinner = 0;
         for (int i = 0; i < gymmemberList.size(); i++) {
-            if(gymmemberList.get(i).getSquatsRecord()+gymmemberList.get(i).getPushUpsRecord()==number) {
+            if (gymmemberList.get(i).getSquatsRecord() + gymmemberList.get(i).getPushUpsRecord() > number) {
+                gymmemberList.get(indexPreviousWinner).setWonPrize(false);
                 gymmemberList.get(i).setWonPrize(true);
+                number = gymmemberList.get(i).getSquatsRecord() + gymmemberList.get(i).getPushUpsRecord();
+                indexPreviousWinner = i;
             } else {
                 gymmemberList.get(i).setWonPrize(false);
             }
         }
-    }
-
-    int maxNumber() {
-        int maxNumber = gymmemberList.get(0).getPushUpsRecord() + gymmemberList.get(0).getSquatsRecord();
-        gymmemberList.get(0).setWonPrize(true);
-        for (int i = 1; i < gymmemberList.size(); i++) {
-            if (gymmemberList.get(i).getPushUpsRecord() + gymmemberList.get(i).getSquatsRecord() >= maxNumber) {
-                maxNumber=gymmemberList.get(i).getPushUpsRecord() + gymmemberList.get(i).getSquatsRecord();
-            }
-        }
-        return maxNumber;
     }
 
 
@@ -46,7 +40,7 @@ public class GymFactoryCraiova implements GymActivity {
     public void displayWinners() {
         for (int i = 0; i < gymmemberList.size(); i++) {
             if (gymmemberList.get(i).isWonPrize()) {
-                System.out.print(ConsoleColors.RED + gymmemberList.get(i).getName() + ConsoleColors.RESET + "; ");
+                System.out.print(ConsoleColors.RED.code + gymmemberList.get(i).getName() + ConsoleColors.RESET.code + "; ");
             }
         }
     }
@@ -60,9 +54,9 @@ public class GymFactoryCraiova implements GymActivity {
 
     @Override
     public String toString() {
-        String result="";
+        String result = "";
         for (int i = 0; i < gymmemberList.size(); i++) {
-           result += gymmemberList.get(i).getName() +"; years old: "+  gymmemberList.get(i).getAge() +"; PushUps: "+ gymmemberList.get(i).getPushUpsRecord() +"; Squats "+ gymmemberList.get(i).getSquatsRecord() +"; Won prize: "+ gymmemberList.get(i).isWonPrize() +"\n";
+            result += gymmemberList.get(i).getName() + "; years old: " + gymmemberList.get(i).getAge() + "; PushUps: " + gymmemberList.get(i).getPushUpsRecord() + "; Squats " + gymmemberList.get(i).getSquatsRecord() + "; Won prize: " + gymmemberList.get(i).isWonPrize() + "\n";
 
         }
         return result;

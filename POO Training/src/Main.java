@@ -11,14 +11,14 @@ public class Main {
         gymActivity.addMember(new GymMember("Louie", 30, 0, 0, false));
 
         //Situația inițială
-        System.out.println(ConsoleColors.GREEN + "Everybody starts from 0:" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN.code + "Everybody starts from 0:" + ConsoleColors.RESET.code);
         System.out.println(gymActivity);
 
         //Primirea rezultatelor de la arbitru
         gymActivity.receiveResult(0, 30, 70);
         gymActivity.receiveResult(1, 55, 55);
         gymActivity.receiveResult(2, 27, 40);
-        gymActivity.receiveResult(3, 60, 40);
+        gymActivity.receiveResult(3, 55, 56);
         gymActivity.receiveResult(4, 5, 40);
 
 
@@ -26,7 +26,7 @@ public class Main {
         gymActivity.givePrizes();
 
         //afisarea rezultatelor
-        System.out.println(ConsoleColors.BLUE + "Received results:" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE.code + "Received results:" + ConsoleColors.RESET.code);
         System.out.println(gymActivity);
 
 
